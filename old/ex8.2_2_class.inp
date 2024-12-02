@@ -1,0 +1,23 @@
+TITLE:
+2 classes
+DATA:
+FILE = "data_ex8.2_1631566551e8ed1f296fa0b105ecbf87.dat"; 
+VARIABLE:
+NAMES = V1 V2 V3 V4 V5; 
+ MISSING=.;
+ CLASSES = c1(2);
+
+ANALYSIS:
+TYPE = mixture;
+
+MODEL:
+%OVERALL%
+i s | V1@0 V2@1 V3@2 V4@3;
+i s on V5;
+
+
+OUTPUT:
+tech11 tech14;
+SAVEDATA:
+FILE IS ex8.2_2.dat;
+SAVE = cprobabilities;

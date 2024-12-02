@@ -1,0 +1,391 @@
+---
+title: "Growth Mixture Models"
+author: "Dina Arch"
+date: "Updated: `r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    theme: flatly
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE,
+                      message = FALSE) #Here, I have made it so that when you knit your .rmd, warnings and messages will not show up in the html markdown. 
+```
+
+
+`University of California, Santa Barbara`
+
+
+------------------------------------------------------------------------
+
+Load packages
+
+```{r, cache = FALSE}
+library(tidyverse)
+library(MplusAutomation)
+library(here)
+library(DiagrammeR)
+library(glue)
+library(cowplot)
+library(gt)
+library(Hmisc)
+
+here::i_am("growth_mixtures.Rmd")
+```
+
+------------------------------------------------------------------------
+
+## Example: Science Summary Scores
+
+------------------------------------------------------------------------
+
+This example looks at science IRT scores over time (Grades 7-12) [See documentation here](lsay.org)
+
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+
+grViz(" digraph gmm_model {
+
+# The `graph` statement - No editing needed
+
+    graph [layout = dot, overlap = true]
+ 
+# Two `node` statements
+ 
+# One for measured variables (box) 
+
+    node [shape=box]
+    sci7 sci8 sci9 sci10 sci11 sci12;
+ 
+# Three for latent variables (circle) 
+ 
+    node [shape=circle, width=1.2, height=1.2, fixedsize=true]
+    sci [label=<Science <br/>C<sub>k</sub>>];
+    int [label=Intercept];
+    slope [label=Slope];    
+
+# `edge` statements
+ 
+    edge [minlen = 2]
+    sci -> int
+    sci -> slope
+    int -> {sci7 sci8 sci9 sci10 sci11 sci12}[headport = n]
+    slope -> {sci7 sci8 sci9 sci10 sci11 sci12} [headport = n]
+ 
+ }") 
+```
+
+
+------------------------------------------------------------------------
+
+### Prepare Data
+
+```{r}
+#library(haven)
+#lsay <- read_sav(here("lsay.sav"))
+#lsay_sci <- lsay %>%
+#  select(CASENUM, ASCIIRT, CSCIIRT, ESCIIRT, GSCIIRT, ISCIIRT, KSCIIRT) 
+#(lsay_sci, "lsay_sci.csv")
+
+lsay_sci <- read_csv(here("data","lsay_sci.csv")) %>% 
+  rename(
+    id = CASENUM,
+    sci7 = ASCIIRT,
+    sci8 = CSCIIRT,
+    sci9 = ESCIIRT, 
+    sci10 = GSCIIRT,
+    sci11 = ISCIIRT,
+    sci12 = KSCIIRT
+  ) 
+```
+
+------------------------------------------------------------------------
+
+### Descriptive Statistics
+
+```{r}
+lsay_sci %>% 
+  select(-id) %>% 
+  psych::describe()
+```
+
+------------------------------------------------------------------------
+
+### Correlation Table
+
+```{r}
+cor_data <- lsay_sci %>% 
+  select(-id)
+
+rcorr(as.matrix(cor_data)) 
+```
+
+------------------------------------------------------------------------
+
+### Spaghetti Plot
+
+```{r}
+plot_data <- lsay_sci[1:500,] %>%
+  drop_na() %>% 
+  pivot_longer(cols = starts_with("sci"),  
+               names_to = "grade",          
+               values_to = "value") %>% 
+  mutate(grade = factor(grade, 
+                        levels = c("sci7", "sci8", "sci9", "sci10", "sci11", "sci12"), 
+                        labels = c(7,8,9,10,11,12)))
+
+mean_sci <- plot_data %>%
+  drop_na() %>% 
+  group_by(grade) %>%
+  summarise(mean_response = mean(value),
+            se_response = sd(value) / sqrt(n()))
+
+ggplot() +                                                                   
+  geom_point(data = plot_data, aes(x = grade, y = value, group = id), alpha = .3) +     
+  geom_line(data = plot_data, aes(x = grade, y = value, group = id), alpha = .3) +      
+  geom_point(data=mean_sci, aes(x=grade, y = mean_response), color = "Blue", size = 1.2) +               
+  geom_line(data=mean_sci, aes(x=grade, y = mean_response, group = 1), color = "blue", size = 1.2) + 
+  geom_errorbar(data = mean_sci, aes(x = grade, ymin = mean_response - se_response, 
+                                      ymax = mean_response + se_response),
+                width = 0.2, size = 1.2, color = "blue") +  
+  labs(title = "Spaghetti Plot with Mean Line and Error Bars",,
+       x="Grade", 
+       y="Science Score") +                                                           
+  theme_cowplot()                                                                              
+
+```
+
+------------------------------------------------------------------------
+
+### Growth Mixture Model 
+
+```{r, eval = FALSE}
+
+gmm_6  <- lapply(1:6, function(k) {
+  gmm_enum  <- mplusObject(
+      
+    TITLE = glue("GMM {k}-Class"), 
+  
+    VARIABLE = glue(
+    "usevar = sci7-sci12; 
+     classes = c({k}); "),
+  
+  ANALYSIS = 
+   "estimator = mlr; 
+    type = mixture;
+    starts = 200 100; 
+    processors = 10;",
+  
+  MODEL = 
+    "%OVERALL%
+       i s | sci7@0 sci8@1 sci9@2 sci10@3 sci11@4 sci12@5;",
+  
+  OUTPUT = "tech1 tech11 tech14 sampstat standardized;",
+  
+  SAVEDATA = 
+    glue("FILE IS savedata_c{k}.dat;
+     SAVE = cprobabilities;"),
+  
+  PLOT = "type=plot3;
+          series = sci7-sci12(*)",
+  
+  usevariables = colnames(lsay_sci),
+  rdata = lsay_sci)
+
+gmm_enum_fit <- mplusModeler(gmm_enum, 
+                            dataout=glue(here("gmm_enum", "gmm_lsay.dat")),
+                            modelout=glue(here("gmm_enum", "c{k}_gmm_lsay.inp")) ,
+                            check=TRUE, run = TRUE, hashfilename = FALSE)
+})
+
+```
+
+
+------------------------------------------------------------------------
+
+### Table of Fit 
+
+First, extract data:
+
+```{r}
+
+output_gmm <- readModels(here("gmm_enum"), filefilter = "gmm", quiet = TRUE)
+
+# Extract fit indices
+enum_extract <- LatexSummaryTable(
+  output_gmm,
+  keepCols = c(
+    "Title",
+    "Parameters",
+    "LL",
+    "BIC",
+    "aBIC",
+    "BLRT_PValue",
+    "T11_VLMR_PValue",
+    "Observations"
+  ),
+  sortBy = "Title"
+)
+
+# Extract lowest class size
+min_sizes <- map_df(names(output_gmm), ~ {
+  model <- output_gmm[[.x]]
+  min_size <- min(model$class_counts$modelEstimated$proportion) * 100
+  tibble(Model = .x, min_cs = round(min_size, 2))
+})
+
+# Combine dataframe
+combined <- cbind(enum_extract, min_sizes)
+
+# Calculate additional fit indices
+allFit <- combined %>%
+  mutate(CAIC = -2 * LL + Parameters * (log(Observations) + 1)) %>%
+  mutate(AWE = -2 * LL + 2 * Parameters * (log(Observations) + 1.5)) %>%
+  mutate(SIC = -.5 * BIC) %>%
+  mutate(expSIC = exp(SIC - max(SIC))) %>%
+  mutate(BF = exp(SIC - lead(SIC))) %>%
+  mutate(cmPk = expSIC / sum(expSIC)) %>%
+  dplyr::select(Title, Parameters, min_cs, LL, BIC, aBIC, CAIC, AWE, BLRT_PValue, T11_VLMR_PValue, BF, cmPk) %>%
+  arrange(Parameters)
+```
+
+
+Then, create table:
+
+```{r}
+fit_table1 <- allFit %>%
+  gt() %>%
+  tab_header(title = md("**Model Fit Summary Table**")) %>%
+  cols_label(
+    Title = "Classes",
+    Parameters = md("Par"),
+    min_cs = md("Min. Class Size"),
+    LL = md("*LL*"),
+    T11_VLMR_PValue = "VLMR",
+    BLRT_PValue = "BLRT",
+    BF = md("BF"),
+    cmPk = md("*cmPk*")
+  ) %>%
+  tab_footnote(
+    footnote = md(
+      "*Note.* Par = Parameters; *LL* = model log likelihood;
+BIC = Bayesian information criterion;
+aBIC = sample size adjusted BIC; CAIC = consistent Akaike information criterion;
+AWE = approximate weight of evidence criterion;
+BLRT = bootstrapped likelihood ratio test p-value;
+VLMR = Vuong-Lo-Mendell-Rubin adjusted likelihood ratio test p-value;
+*cmPk* = approximate correct model probability."
+    ),
+locations = cells_title()
+  ) %>%
+  tab_options(column_labels.font.weight = "bold") %>%
+  fmt_number(c(3:8),
+             decimals = 2) %>%
+  fmt_missing(1:12,
+              missing_text = "--") %>%
+  fmt(
+    c(9:10, 12),
+    fns = function(x)
+      ifelse(x < 0.001, "<.001",
+             scales::number(x, accuracy = .01))
+  ) %>%
+  fmt(
+    11,
+    fns = function (x)
+      ifelse(x > 100, ">100",
+             scales::number(x, accuracy = .01))
+  ) %>%  
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+      ),
+    locations = list(cells_body(
+     columns = BIC,
+     row = BIC == min(BIC[c(1:6)]) # Change this to the number of classes you estimated
+    ),
+    cells_body(
+     columns = aBIC,
+     row = aBIC == min(aBIC[1:6])
+    ),
+    cells_body(
+     columns = CAIC,
+     row = CAIC == min(CAIC[1:6])
+    ),
+    cells_body(
+     columns = AWE,
+     row = AWE == min(AWE[1:6])
+    ),
+    cells_body(
+     columns = cmPk,
+     row =  cmPk == max(cmPk[1:6])
+     ),    
+    cells_body(
+     columns = BF,
+     row =  BF > 10),
+    cells_body( 
+     columns =  T11_VLMR_PValue,
+     row =  ifelse(T11_VLMR_PValue < .001 & lead(T11_VLMR_PValue) > .05, T11_VLMR_PValue < .001, NA)),
+    cells_body(
+     columns =  BLRT_PValue,
+     row =  ifelse(BLRT_PValue < .001 & lead(BLRT_PValue) > .05, BLRT_PValue < .001, NA))
+  )
+)
+
+fit_table1
+```
+
+------------------------------------------------------------------------
+
+### Information Criteria Plot
+
+```{r height=5, width=7}
+allFit %>%
+  dplyr::select(LL:AWE) %>%
+  rowid_to_column() %>%
+  pivot_longer(`BIC`:`AWE`,
+               names_to = "Index",
+               values_to = "ic_value") %>%
+  mutate(Index = factor(Index,
+                        levels = c ("AWE", "CAIC", "BIC", "aBIC"))) %>%
+  ggplot(aes(
+    x = rowid,
+    y = ic_value,
+    color = Index,
+    shape = Index,
+    group = Index,
+    lty = Index
+  )) +
+  geom_point(size = 2.0) + geom_line(size = .8) +
+  scale_x_continuous(breaks = 1:nrow(allFit)) +
+  scale_colour_grey(end = .5) +
+  theme_cowplot() +
+  labs(x = "Number of Classes", y = "Information Criteria Value", title = "Information Criteria") +
+  theme(
+    text = element_text(family = "Times", size = 12),
+    legend.text = element_text(family="Times", size=12),
+    legend.key.width = unit(3, "line"),
+    legend.title = element_blank(),
+    legend.position = "top"  
+  )
+```
+
+------------------------------------------------------------------------
+
+### Plot GMM
+
+```{r}
+plotGrowthMixtures(output_gmm, estimated = TRUE, rawdata = TRUE, 
+                   time_scale = c(1, 2, 3, 4, 5, 6), alpha_range = c(0, 0.01))
+```
+
+
+------------------------------------------------------------------------
+
+
+![](figures/UCSB_Navy_mark.png){width="75%"}

@@ -1,0 +1,49 @@
+Title:  Week 6 Assignment: 1 class GMM with no covariates
+
+DATA: FILE IS lsay.dat;
+
+VARIABLE:  NAMES ARE lsayid schcode classize urban tracking ntracks 
+              mthlvl female mthflg7-mthflg12 mothed fathed mothsei 
+              fathsei homeres race
+              expect parapsh parcpsh parmpsh peerapsh peermpsh
+              bas7 basse7 alg7 algse7 geo7 geose7
+              qlt7 qltse7 mth7 mthse7 mtha7 mthase7
+              bas8 basse8 alg8 algse8 geo8 geose8
+              qlt8 qltse8 mth8 mthse8 mtha8 mthase8
+              bas9 basse9 alg9 algse9 geo9 geose9
+              qlt9 qltse9 mth9 mthse9 mtha9 mthase9
+              bas10 basse10 alg10 algse10 geo10 geose10
+              qlt10 qltse10 mth10 mthse10 mtha10 mthase10
+              bas11 basse11 alg11 algse11 geo11 geose11
+              qlt11 qltse11 mth11 mthse11 mtha11 mthase11
+              bas12 basse12 alg12 algse12 geo12 geose12
+              qlt12 qltse12 mth12 mthse12 mtha12 mthase12
+              mthcrs7-mthcrs12 mtrk10-mtrk12 totstud lchfull
+              lchpart parvis mcirr mclub strat mstrat comp mcomp
+              african hispan asian expel arrest dropot self worth
+              other satisf respect failure esteem problem cloctn
+              dloctn eloctn floctn gloctn hloctn iloctn jloctn
+              kloctn lloctn drink runawa suicid alc7 alc10 alc11
+              alc12 arest7 runa8 runa9 runa10 runa11 run12 suic8
+              suic9 suic10 suic11 suic12 drop7 drop8 drop9 drop10
+              drop11 drop12 fdrop8 fdrop9 fdrop10 fdrop11 fdrop12
+              enj7 good7 und7 useboy7 nerv7 wor7 scar7 use7 logic7
+              boybet7 job7 often7 enj8 good8 und8 useboy8 nerv8
+              wor8 scar8 use8 logic8 boybet8 job8 often8 enj9
+              good9 und9 useboy9 nerv9 wor9 scar9 use9 logic9
+              boybet9 job9 often9 enj10 good10 und10 useboy10
+              nerv10 wor10 scar10 use10 logic10 boybet10 job10
+              often10;
+           USEVAR = mth7 mth8 mth9 mth10 mth11 mth12;
+           MISSING are all(9999);
+           CLASSES = c(1);
+           
+!mth7-mth12 = Aggregate math IRT, w/o aberrants
+
+ANALYSIS: type = mixture missing;
+          starts = 20 2;
+
+MODEL: %OVERALL%
+       i s | mth7@0 mth8@1 mth9@2 mth10@3 mth11@4 mth12@5;
+                     
+OUTPUT: tech11;

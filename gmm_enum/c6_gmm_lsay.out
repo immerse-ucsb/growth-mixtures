@@ -1,0 +1,2520 @@
+Mplus VERSION 8.10
+MUTHEN & MUTHEN
+12/02/2024  12:27 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  GMM 6-Class
+  DATA:
+  FILE = "C:/Users/dinan/Box/IES_IMMERSE/youtube_materials/growth-mixtures/
+  gmm_enum/gmm_lsay.dat";
+  VARIABLE:
+  NAMES = id sci7 sci8 sci9 sci10 sci11 sci12;
+   MISSING=.;
+   usevar = sci7-sci12;
+  classes = c(6);
+  ANALYSIS:
+  estimator = mlr;
+      type = mixture;
+      starts = 200 100;
+      processors = 10;
+  MODEL:
+  %OVERALL%
+         i s | sci7@0 sci8@1 sci9@2 sci10@3 sci11@4 sci12@5;
+  OUTPUT:
+  tech1 tech11 tech14 sampstat standardized;
+  SAVEDATA:
+  FILE IS savedata_c6.dat;
+  SAVE = cprobabilities;
+  PLOT:
+  type=plot3;
+            series = sci7-sci12(*)
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  79
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+GMM 6-Class
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        5866
+
+Number of dependent variables                                    6
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Continuous
+   SCI7        SCI8        SCI9        SCI10       SCI11       SCI12
+
+Continuous latent variables
+   I           S
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                        200
+  Number of final stage optimizations                          100
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+
+Input data file(s)
+  C:/Users/dinan/Box/IES_IMMERSE/youtube_materials/growth-mixtures/gmm_enum/gmm_
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            49
+     Number of y missing data patterns          49
+     Number of u missing data patterns           0
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7           0.524
+ SCI8           0.425         0.431
+ SCI9           0.392         0.352         0.397
+ SCI10          0.334         0.297         0.305         0.800
+ SCI11          0.268         0.245         0.244         0.566         0.612
+ SCI12          0.193         0.179         0.178         0.447         0.415
+
+
+           Covariance Coverage
+              SCI12
+              ________
+ SCI12          0.482
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+               50.279        53.618        57.745        59.696        62.590
+
+
+           Means
+              SCI12
+              ________
+               64.082
+
+
+           Covariances
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7          97.323
+ SCI8          83.169       113.251
+ SCI9          78.717        95.847       115.692
+ SCI10         79.266        92.753       103.619       124.287
+ SCI11         80.825        94.282       103.322       113.653       132.546
+ SCI12         81.856        92.650       100.754       110.435       125.071
+
+
+           Covariances
+              SCI12
+              ________
+ SCI12        142.765
+
+
+           Correlations
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7           1.000
+ SCI8           0.792         1.000
+ SCI9           0.742         0.837         1.000
+ SCI10          0.721         0.782         0.864         1.000
+ SCI11          0.712         0.770         0.834         0.885         1.000
+ SCI12          0.694         0.729         0.784         0.829         0.909
+
+
+           Correlations
+              SCI12
+              ________
+ SCI12          1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -63468.424
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SCI7                 50.405       0.199      26.140    0.03%      40.970     47.170     50.040
+            3071.000     104.020      -0.460      88.030    0.03%      52.980     59.320
+     SCI8                 54.046      -0.168      22.820    0.04%      43.690     51.700     54.640
+            2527.000     124.424      -0.644      83.940    0.04%      57.880     64.060
+     SCI9                 58.690      -0.347      27.360    0.04%      48.690     57.230     60.400
+            2326.000     126.293      -0.394      91.210    0.04%      62.810     68.140
+     SCI10                60.320      -0.144      26.970    0.02%      50.590     57.690     60.835
+            4690.000     121.522      -0.432      91.330    0.02%      63.770     70.100
+     SCI11                64.101      -0.342      24.440    0.03%      54.610     62.240     64.755
+            3592.000     125.578      -0.169      93.130    0.03%      67.390     73.790
+     SCI12                65.846      -0.351      26.380    0.04%      56.830     63.660     66.245
+            2826.000     135.678       0.023      95.560    0.04%      68.860     75.850
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+          -63663.159  136842           58
+          -63663.159  247224           94
+          -63663.159  802779           122
+          -63663.159  281558           184
+          -63663.159  887676           22
+          -63663.159  369602           146
+          -63663.159  794236           127
+          -63663.159  957392           79
+          -63663.159  468036           131
+          -63663.159  573096           20
+          -63663.159  399671           13
+          -63663.159  509733           130
+          -63663.159  190339           102
+          -63663.159  292884           103
+          -63663.159  131856           90
+          -63663.159  695155           150
+          -63663.159  285380           1
+          -63663.159  407168           44
+          -63663.159  535804           111
+          -63668.387  264081           186
+          -63668.387  848890           95
+          -63668.387  392418           28
+          -63668.387  761633           50
+          -63668.387  579995           183
+          -63668.387  76974            16
+          -63668.387  479273           156
+          -63668.387  967237           48
+          -63668.387  393232           152
+          -63668.387  783110           72
+          -63668.387  636396           168
+          -63668.387  972873           157
+          -63668.387  364676           27
+          -63680.190  751153           110
+          -63683.451  484501           163
+          -63683.451  637345           19
+          -63683.590  313407           132
+          -63683.590  443917           60
+          -63686.632  76337            76
+          -63688.032  592219           119
+          -63688.032  311214           64
+          -63692.304  319144           176
+          -63700.100  227563           63
+
+58 perturbed starting value run(s) did not converge or were rejected in the third stage.
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       26
+
+Loglikelihood
+
+          H0 Value                      -63663.159
+          H0 Scaling Correction Factor      1.2003
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                  127378.317
+          Bayesian (BIC)                127551.918
+          Sample-Size Adjusted BIC      127469.297
+            (n* = (n + 2) / 24)
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1       2081.13702          0.35478
+       2         76.33577          0.01301
+       3       1173.06405          0.19998
+       4       1346.18210          0.22949
+       5        456.18209          0.07777
+       6        733.09897          0.12497
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1       2081.13702          0.35478
+       2         76.33577          0.01301
+       3       1173.06405          0.19998
+       4       1346.18210          0.22949
+       5        456.18209          0.07777
+       6        733.09897          0.12497
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1             2491          0.42465
+       2               36          0.00614
+       3             1112          0.18957
+       4             1565          0.26679
+       5              355          0.06052
+       6              307          0.05234
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.552
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2        3        4        5        6
+
+    1   0.641    0.007    0.113    0.102    0.005    0.131
+    2   0.048    0.724    0.091    0.006    0.000    0.131
+    3   0.180    0.015    0.789    0.001    0.000    0.015
+    4   0.134    0.004    0.002    0.620    0.105    0.135
+    5   0.004    0.000    0.000    0.201    0.780    0.015
+    6   0.232    0.031    0.022    0.160    0.007    0.548
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2        3        4        5        6
+
+    1   0.768    0.001    0.096    0.101    0.001    0.034
+    2   0.242    0.341    0.214    0.077    0.001    0.125
+    3   0.240    0.003    0.748    0.003    0.000    0.006
+    4   0.188    0.000    0.001    0.721    0.053    0.037
+    5   0.028    0.000    0.000    0.360    0.607    0.005
+    6   0.446    0.006    0.023    0.288    0.007    0.229
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2        3        4        5        6
+
+    1      3.112   -3.716    1.032    1.081   -3.926    0.000
+    2      0.656    1.001    0.533   -0.489   -4.951    0.000
+    3      3.752   -0.697    4.889   -0.611   -7.017    0.000
+    4      1.639   -5.510   -3.561    2.982    0.373    0.000
+    5      1.732   -7.263   -3.073    4.288    4.811    0.000
+    6      0.665   -3.573   -2.308    0.227   -3.486    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ I        |
+    SCI7               1.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               1.000      0.000    999.000    999.000
+    SCI10              1.000      0.000    999.000    999.000
+    SCI11              1.000      0.000    999.000    999.000
+    SCI12              1.000      0.000    999.000    999.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               2.000      0.000    999.000    999.000
+    SCI10              3.000      0.000    999.000    999.000
+    SCI11              4.000      0.000    999.000    999.000
+    SCI12              5.000      0.000    999.000    999.000
+
+ S        WITH
+    I                 -2.454      0.441     -5.565      0.000
+
+ Means
+    I                 54.088      0.458    118.224      0.000
+    S                  2.762      0.118     23.410      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                 38.296      3.263     11.737      0.000
+    S                  0.241      0.131      1.838      0.066
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+Latent Class 2
+
+ I        |
+    SCI7               1.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               1.000      0.000    999.000    999.000
+    SCI10              1.000      0.000    999.000    999.000
+    SCI11              1.000      0.000    999.000    999.000
+    SCI12              1.000      0.000    999.000    999.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               2.000      0.000    999.000    999.000
+    SCI10              3.000      0.000    999.000    999.000
+    SCI11              4.000      0.000    999.000    999.000
+    SCI12              5.000      0.000    999.000    999.000
+
+ S        WITH
+    I                 -2.454      0.441     -5.565      0.000
+
+ Means
+    I                 40.899      2.481     16.484      0.000
+    S                  8.231      0.548     15.024      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                 38.296      3.263     11.737      0.000
+    S                  0.241      0.131      1.838      0.066
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+Latent Class 3
+
+ I        |
+    SCI7               1.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               1.000      0.000    999.000    999.000
+    SCI10              1.000      0.000    999.000    999.000
+    SCI11              1.000      0.000    999.000    999.000
+    SCI12              1.000      0.000    999.000    999.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               2.000      0.000    999.000    999.000
+    SCI10              3.000      0.000    999.000    999.000
+    SCI11              4.000      0.000    999.000    999.000
+    SCI12              5.000      0.000    999.000    999.000
+
+ S        WITH
+    I                 -2.454      0.441     -5.565      0.000
+
+ Means
+    I                 61.228      0.499    122.781      0.000
+    S                  3.798      0.093     40.629      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                 38.296      3.263     11.737      0.000
+    S                  0.241      0.131      1.838      0.066
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+Latent Class 4
+
+ I        |
+    SCI7               1.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               1.000      0.000    999.000    999.000
+    SCI10              1.000      0.000    999.000    999.000
+    SCI11              1.000      0.000    999.000    999.000
+    SCI12              1.000      0.000    999.000    999.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               2.000      0.000    999.000    999.000
+    SCI10              3.000      0.000    999.000    999.000
+    SCI11              4.000      0.000    999.000    999.000
+    SCI12              5.000      0.000    999.000    999.000
+
+ S        WITH
+    I                 -2.454      0.441     -5.565      0.000
+
+ Means
+    I                 45.158      0.714     63.258      0.000
+    S                  1.942      0.133     14.619      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                 38.296      3.263     11.737      0.000
+    S                  0.241      0.131      1.838      0.066
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+Latent Class 5
+
+ I        |
+    SCI7               1.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               1.000      0.000    999.000    999.000
+    SCI10              1.000      0.000    999.000    999.000
+    SCI11              1.000      0.000    999.000    999.000
+    SCI12              1.000      0.000    999.000    999.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               2.000      0.000    999.000    999.000
+    SCI10              3.000      0.000    999.000    999.000
+    SCI11              4.000      0.000    999.000    999.000
+    SCI12              5.000      0.000    999.000    999.000
+
+ S        WITH
+    I                 -2.454      0.441     -5.565      0.000
+
+ Means
+    I                 43.479      0.766     56.745      0.000
+    S                 -0.519      0.154     -3.363      0.001
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                 38.296      3.263     11.737      0.000
+    S                  0.241      0.131      1.838      0.066
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+Latent Class 6
+
+ I        |
+    SCI7               1.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               1.000      0.000    999.000    999.000
+    SCI10              1.000      0.000    999.000    999.000
+    SCI11              1.000      0.000    999.000    999.000
+    SCI12              1.000      0.000    999.000    999.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               1.000      0.000    999.000    999.000
+    SCI9               2.000      0.000    999.000    999.000
+    SCI10              3.000      0.000    999.000    999.000
+    SCI11              4.000      0.000    999.000    999.000
+    SCI12              5.000      0.000    999.000    999.000
+
+ S        WITH
+    I                 -2.454      0.441     -5.565      0.000
+
+ Means
+    I                 42.062      0.973     43.241      0.000
+    S                  4.722      0.255     18.483      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                 38.296      3.263     11.737      0.000
+    S                  0.241      0.131      1.838      0.066
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+Categorical Latent Variables
+
+ Means
+    C#1                1.043      0.241      4.323      0.000
+    C#2               -2.262      0.402     -5.629      0.000
+    C#3                0.470      0.186      2.529      0.011
+    C#4                0.608      0.238      2.555      0.011
+    C#5               -0.474      0.227     -2.093      0.036
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.115E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  8.740      0.391     22.326      0.000
+    S                  5.630      1.494      3.768      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+Latent Class 2
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  6.609      0.548     12.050      0.000
+    S                 16.776      4.424      3.792      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+Latent Class 3
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  9.894      0.469     21.100      0.000
+    S                  7.740      2.187      3.539      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+Latent Class 4
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  7.297      0.270     27.032      0.000
+    S                  3.959      1.010      3.919      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+Latent Class 5
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  7.026      0.263     26.711      0.000
+    S                 -1.057      0.492     -2.149      0.032
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+Latent Class 6
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  6.797      0.277     24.495      0.000
+    S                  9.625      2.557      3.765      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  8.740      0.391     22.326      0.000
+    S                  5.630      1.494      3.768      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+Latent Class 2
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  6.609      0.548     12.050      0.000
+    S                 16.776      4.424      3.792      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+Latent Class 3
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  9.894      0.469     21.100      0.000
+    S                  7.740      2.187      3.539      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+Latent Class 4
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  7.297      0.270     27.032      0.000
+    S                  3.959      1.010      3.919      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+Latent Class 5
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  7.026      0.263     26.711      0.000
+    S                 -1.057      0.492     -2.149      0.032
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+Latent Class 6
+
+ I        |
+    SCI7               0.789      0.015     53.326      0.000
+    SCI8               0.838      0.018     47.770      0.000
+    SCI9               0.870      0.023     38.625      0.000
+    SCI10              0.934      0.030     31.490      0.000
+    SCI11              1.101      0.046     23.760      0.000
+    SCI12              0.999      0.052     19.295      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.066      0.019      3.485      0.000
+    SCI9               0.138      0.040      3.478      0.001
+    SCI10              0.222      0.064      3.480      0.001
+    SCI11              0.349      0.100      3.479      0.001
+    SCI12              0.396      0.109      3.625      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  6.797      0.277     24.495      0.000
+    S                  9.625      2.557      3.765      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7               0.377      0.023     16.123      0.000
+    SCI8               0.383      0.023     16.365      0.000
+    SCI9               0.419      0.024     17.551      0.000
+    SCI10              0.414      0.024     17.573      0.000
+    SCI11              0.287      0.023     12.421      0.000
+    SCI12              0.485      0.032     15.303      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ I        |
+    SCI7               6.188      0.264     23.474      0.000
+    SCI8               6.188      0.264     23.474      0.000
+    SCI9               6.188      0.264     23.474      0.000
+    SCI10              6.188      0.264     23.474      0.000
+    SCI11              6.188      0.264     23.474      0.000
+    SCI12              6.188      0.264     23.474      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.491      0.133      3.676      0.000
+    SCI9               0.981      0.267      3.676      0.000
+    SCI10              1.472      0.400      3.676      0.000
+    SCI11              1.962      0.534      3.676      0.000
+    SCI12              2.453      0.667      3.676      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  8.740      0.391     22.326      0.000
+    S                  5.630      1.494      3.768      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+Latent Class 2
+
+ I        |
+    SCI7               6.188      0.264     23.474      0.000
+    SCI8               6.188      0.264     23.474      0.000
+    SCI9               6.188      0.264     23.474      0.000
+    SCI10              6.188      0.264     23.474      0.000
+    SCI11              6.188      0.264     23.474      0.000
+    SCI12              6.188      0.264     23.474      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.491      0.133      3.676      0.000
+    SCI9               0.981      0.267      3.676      0.000
+    SCI10              1.472      0.400      3.676      0.000
+    SCI11              1.962      0.534      3.676      0.000
+    SCI12              2.453      0.667      3.676      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  6.609      0.548     12.050      0.000
+    S                 16.776      4.424      3.792      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+Latent Class 3
+
+ I        |
+    SCI7               6.188      0.264     23.474      0.000
+    SCI8               6.188      0.264     23.474      0.000
+    SCI9               6.188      0.264     23.474      0.000
+    SCI10              6.188      0.264     23.474      0.000
+    SCI11              6.188      0.264     23.474      0.000
+    SCI12              6.188      0.264     23.474      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.491      0.133      3.676      0.000
+    SCI9               0.981      0.267      3.676      0.000
+    SCI10              1.472      0.400      3.676      0.000
+    SCI11              1.962      0.534      3.676      0.000
+    SCI12              2.453      0.667      3.676      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  9.894      0.469     21.100      0.000
+    S                  7.740      2.187      3.539      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+Latent Class 4
+
+ I        |
+    SCI7               6.188      0.264     23.474      0.000
+    SCI8               6.188      0.264     23.474      0.000
+    SCI9               6.188      0.264     23.474      0.000
+    SCI10              6.188      0.264     23.474      0.000
+    SCI11              6.188      0.264     23.474      0.000
+    SCI12              6.188      0.264     23.474      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.491      0.133      3.676      0.000
+    SCI9               0.981      0.267      3.676      0.000
+    SCI10              1.472      0.400      3.676      0.000
+    SCI11              1.962      0.534      3.676      0.000
+    SCI12              2.453      0.667      3.676      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  7.297      0.270     27.032      0.000
+    S                  3.959      1.010      3.919      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+Latent Class 5
+
+ I        |
+    SCI7               6.188      0.264     23.474      0.000
+    SCI8               6.188      0.264     23.474      0.000
+    SCI9               6.188      0.264     23.474      0.000
+    SCI10              6.188      0.264     23.474      0.000
+    SCI11              6.188      0.264     23.474      0.000
+    SCI12              6.188      0.264     23.474      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.491      0.133      3.676      0.000
+    SCI9               0.981      0.267      3.676      0.000
+    SCI10              1.472      0.400      3.676      0.000
+    SCI11              1.962      0.534      3.676      0.000
+    SCI12              2.453      0.667      3.676      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  7.026      0.263     26.711      0.000
+    S                 -1.057      0.492     -2.149      0.032
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+Latent Class 6
+
+ I        |
+    SCI7               6.188      0.264     23.474      0.000
+    SCI8               6.188      0.264     23.474      0.000
+    SCI9               6.188      0.264     23.474      0.000
+    SCI10              6.188      0.264     23.474      0.000
+    SCI11              6.188      0.264     23.474      0.000
+    SCI12              6.188      0.264     23.474      0.000
+
+ S        |
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.491      0.133      3.676      0.000
+    SCI9               0.981      0.267      3.676      0.000
+    SCI10              1.472      0.400      3.676      0.000
+    SCI11              1.962      0.534      3.676      0.000
+    SCI12              2.453      0.667      3.676      0.000
+
+ S        WITH
+    I                 -0.808      0.167     -4.830      0.000
+
+ Means
+    I                  6.797      0.277     24.495      0.000
+    S                  9.625      2.557      3.765      0.000
+
+ Intercepts
+    SCI7               0.000      0.000    999.000    999.000
+    SCI8               0.000      0.000    999.000    999.000
+    SCI9               0.000      0.000    999.000    999.000
+    SCI10              0.000      0.000    999.000    999.000
+    SCI11              0.000      0.000    999.000    999.000
+    SCI12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI7              23.158      1.276     18.149      0.000
+    SCI8              20.870      0.951     21.956      0.000
+    SCI9              21.197      0.973     21.775      0.000
+    SCI10             18.178      0.777     23.398      0.000
+    SCI11              9.056      0.549     16.506      0.000
+    SCI12             18.601      1.000     18.600      0.000
+
+
+R-SQUARE
+
+Class 1
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SCI7               0.623      0.023     26.663      0.000
+    SCI8               0.617      0.023     26.370      0.000
+    SCI9               0.581      0.024     24.380      0.000
+    SCI10              0.586      0.024     24.884      0.000
+    SCI11              0.713      0.023     30.889      0.000
+    SCI12              0.515      0.032     16.271      0.000
+
+Class 2
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SCI7               0.623      0.023     26.663      0.000
+    SCI8               0.617      0.023     26.370      0.000
+    SCI9               0.581      0.024     24.380      0.000
+    SCI10              0.586      0.024     24.884      0.000
+    SCI11              0.713      0.023     30.889      0.000
+    SCI12              0.515      0.032     16.271      0.000
+
+Class 3
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SCI7               0.623      0.023     26.663      0.000
+    SCI8               0.617      0.023     26.370      0.000
+    SCI9               0.581      0.024     24.380      0.000
+    SCI10              0.586      0.024     24.884      0.000
+    SCI11              0.713      0.023     30.889      0.000
+    SCI12              0.515      0.032     16.271      0.000
+
+Class 4
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SCI7               0.623      0.023     26.663      0.000
+    SCI8               0.617      0.023     26.370      0.000
+    SCI9               0.581      0.024     24.380      0.000
+    SCI10              0.586      0.024     24.884      0.000
+    SCI11              0.713      0.023     30.889      0.000
+    SCI12              0.515      0.032     16.271      0.000
+
+Class 5
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SCI7               0.623      0.023     26.663      0.000
+    SCI8               0.617      0.023     26.370      0.000
+    SCI9               0.581      0.024     24.380      0.000
+    SCI10              0.586      0.024     24.884      0.000
+    SCI11              0.713      0.023     30.889      0.000
+    SCI12              0.515      0.032     16.271      0.000
+
+Class 6
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SCI7               0.623      0.023     26.663      0.000
+    SCI8               0.617      0.023     26.370      0.000
+    SCI9               0.581      0.024     24.380      0.000
+    SCI10              0.586      0.024     24.884      0.000
+    SCI11              0.713      0.023     30.889      0.000
+    SCI12              0.515      0.032     16.271      0.000
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 1
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              SCI12
+              ________
+                    0
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7               0             0
+ SCI8               0             0
+ SCI9               0             0
+ SCI10              0             0
+ SCI11              0             0
+ SCI12              0             0
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7               1
+ SCI8               0             2
+ SCI9               0             0             3
+ SCI10              0             0             0             4
+ SCI11              0             0             0             0             5
+ SCI12              0             0             0             0             0
+
+
+           THETA
+              SCI12
+              ________
+ SCI12              6
+
+
+           ALPHA
+              I             S
+              ________      ________
+                    7             8
+
+
+           BETA
+              I             S
+              ________      ________
+ I                  0             0
+ S                  0             0
+
+
+           PSI
+              I             S
+              ________      ________
+ I                  9
+ S                 10            11
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 2
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              SCI12
+              ________
+                    0
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7               0             0
+ SCI8               0             0
+ SCI9               0             0
+ SCI10              0             0
+ SCI11              0             0
+ SCI12              0             0
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7               1
+ SCI8               0             2
+ SCI9               0             0             3
+ SCI10              0             0             0             4
+ SCI11              0             0             0             0             5
+ SCI12              0             0             0             0             0
+
+
+           THETA
+              SCI12
+              ________
+ SCI12              6
+
+
+           ALPHA
+              I             S
+              ________      ________
+                   12            13
+
+
+           BETA
+              I             S
+              ________      ________
+ I                  0             0
+ S                  0             0
+
+
+           PSI
+              I             S
+              ________      ________
+ I                  9
+ S                 10            11
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 3
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              SCI12
+              ________
+                    0
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7               0             0
+ SCI8               0             0
+ SCI9               0             0
+ SCI10              0             0
+ SCI11              0             0
+ SCI12              0             0
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7               1
+ SCI8               0             2
+ SCI9               0             0             3
+ SCI10              0             0             0             4
+ SCI11              0             0             0             0             5
+ SCI12              0             0             0             0             0
+
+
+           THETA
+              SCI12
+              ________
+ SCI12              6
+
+
+           ALPHA
+              I             S
+              ________      ________
+                   14            15
+
+
+           BETA
+              I             S
+              ________      ________
+ I                  0             0
+ S                  0             0
+
+
+           PSI
+              I             S
+              ________      ________
+ I                  9
+ S                 10            11
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 4
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              SCI12
+              ________
+                    0
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7               0             0
+ SCI8               0             0
+ SCI9               0             0
+ SCI10              0             0
+ SCI11              0             0
+ SCI12              0             0
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7               1
+ SCI8               0             2
+ SCI9               0             0             3
+ SCI10              0             0             0             4
+ SCI11              0             0             0             0             5
+ SCI12              0             0             0             0             0
+
+
+           THETA
+              SCI12
+              ________
+ SCI12              6
+
+
+           ALPHA
+              I             S
+              ________      ________
+                   16            17
+
+
+           BETA
+              I             S
+              ________      ________
+ I                  0             0
+ S                  0             0
+
+
+           PSI
+              I             S
+              ________      ________
+ I                  9
+ S                 10            11
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 5
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              SCI12
+              ________
+                    0
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7               0             0
+ SCI8               0             0
+ SCI9               0             0
+ SCI10              0             0
+ SCI11              0             0
+ SCI12              0             0
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7               1
+ SCI8               0             2
+ SCI9               0             0             3
+ SCI10              0             0             0             4
+ SCI11              0             0             0             0             5
+ SCI12              0             0             0             0             0
+
+
+           THETA
+              SCI12
+              ________
+ SCI12              6
+
+
+           ALPHA
+              I             S
+              ________      ________
+                   18            19
+
+
+           BETA
+              I             S
+              ________      ________
+ I                  0             0
+ S                  0             0
+
+
+           PSI
+              I             S
+              ________      ________
+ I                  9
+ S                 10            11
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 6
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              SCI12
+              ________
+                    0
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7               0             0
+ SCI8               0             0
+ SCI9               0             0
+ SCI10              0             0
+ SCI11              0             0
+ SCI12              0             0
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7               1
+ SCI8               0             2
+ SCI9               0             0             3
+ SCI10              0             0             0             4
+ SCI11              0             0             0             0             5
+ SCI12              0             0             0             0             0
+
+
+           THETA
+              SCI12
+              ________
+ SCI12              6
+
+
+           ALPHA
+              I             S
+              ________      ________
+                   20            21
+
+
+           BETA
+              I             S
+              ________      ________
+ I                  0             0
+ S                  0             0
+
+
+           PSI
+              I             S
+              ________      ________
+ I                  9
+ S                 10            11
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2           C#3           C#4           C#5
+              ________      ________      ________      ________      ________
+                   22            23            24            25            26
+
+
+           ALPHA(C)
+              C#6
+              ________
+                    0
+
+
+     STARTING VALUES FOR LATENT CLASS 1
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              SCI12
+              ________
+                0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7           1.000         0.000
+ SCI8           1.000         1.000
+ SCI9           1.000         2.000
+ SCI10          1.000         3.000
+ SCI11          1.000         4.000
+ SCI12          1.000         5.000
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7          52.010
+ SCI8           0.000        62.212
+ SCI9           0.000         0.000        63.147
+ SCI10          0.000         0.000         0.000        60.761
+ SCI11          0.000         0.000         0.000         0.000        62.789
+ SCI12          0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              SCI12
+              ________
+ SCI12         67.839
+
+
+           ALPHA
+              I             S
+              ________      ________
+               49.441         3.048
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I            110.736
+ S              0.000        17.390
+
+
+     STARTING VALUES FOR LATENT CLASS 2
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              SCI12
+              ________
+                0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7           1.000         0.000
+ SCI8           1.000         1.000
+ SCI9           1.000         2.000
+ SCI10          1.000         3.000
+ SCI11          1.000         4.000
+ SCI12          1.000         5.000
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7          52.010
+ SCI8           0.000        62.212
+ SCI9           0.000         0.000        63.147
+ SCI10          0.000         0.000         0.000        60.761
+ SCI11          0.000         0.000         0.000         0.000        62.789
+ SCI12          0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              SCI12
+              ________
+ SCI12         67.839
+
+
+           ALPHA
+              I             S
+              ________      ________
+               49.441         3.048
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I            110.736
+ S              0.000        17.390
+
+
+     STARTING VALUES FOR LATENT CLASS 3
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              SCI12
+              ________
+                0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7           1.000         0.000
+ SCI8           1.000         1.000
+ SCI9           1.000         2.000
+ SCI10          1.000         3.000
+ SCI11          1.000         4.000
+ SCI12          1.000         5.000
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7          52.010
+ SCI8           0.000        62.212
+ SCI9           0.000         0.000        63.147
+ SCI10          0.000         0.000         0.000        60.761
+ SCI11          0.000         0.000         0.000         0.000        62.789
+ SCI12          0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              SCI12
+              ________
+ SCI12         67.839
+
+
+           ALPHA
+              I             S
+              ________      ________
+               49.441         3.048
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I            110.736
+ S              0.000        17.390
+
+
+     STARTING VALUES FOR LATENT CLASS 4
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              SCI12
+              ________
+                0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7           1.000         0.000
+ SCI8           1.000         1.000
+ SCI9           1.000         2.000
+ SCI10          1.000         3.000
+ SCI11          1.000         4.000
+ SCI12          1.000         5.000
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7          52.010
+ SCI8           0.000        62.212
+ SCI9           0.000         0.000        63.147
+ SCI10          0.000         0.000         0.000        60.761
+ SCI11          0.000         0.000         0.000         0.000        62.789
+ SCI12          0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              SCI12
+              ________
+ SCI12         67.839
+
+
+           ALPHA
+              I             S
+              ________      ________
+               49.441         3.048
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I            110.736
+ S              0.000        17.390
+
+
+     STARTING VALUES FOR LATENT CLASS 5
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              SCI12
+              ________
+                0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7           1.000         0.000
+ SCI8           1.000         1.000
+ SCI9           1.000         2.000
+ SCI10          1.000         3.000
+ SCI11          1.000         4.000
+ SCI12          1.000         5.000
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7          52.010
+ SCI8           0.000        62.212
+ SCI9           0.000         0.000        63.147
+ SCI10          0.000         0.000         0.000        60.761
+ SCI11          0.000         0.000         0.000         0.000        62.789
+ SCI12          0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              SCI12
+              ________
+ SCI12         67.839
+
+
+           ALPHA
+              I             S
+              ________      ________
+               49.441         3.048
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I            110.736
+ S              0.000        17.390
+
+
+     STARTING VALUES FOR LATENT CLASS 6
+
+
+           NU
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              SCI12
+              ________
+                0.000
+
+
+           LAMBDA
+              I             S
+              ________      ________
+ SCI7           1.000         0.000
+ SCI8           1.000         1.000
+ SCI9           1.000         2.000
+ SCI10          1.000         3.000
+ SCI11          1.000         4.000
+ SCI12          1.000         5.000
+
+
+           THETA
+              SCI7          SCI8          SCI9          SCI10         SCI11
+              ________      ________      ________      ________      ________
+ SCI7          52.010
+ SCI8           0.000        62.212
+ SCI9           0.000         0.000        63.147
+ SCI10          0.000         0.000         0.000        60.761
+ SCI11          0.000         0.000         0.000         0.000        62.789
+ SCI12          0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              SCI12
+              ________
+ SCI12         67.839
+
+
+           ALPHA
+              I             S
+              ________      ________
+               49.441         3.048
+
+
+           BETA
+              I             S
+              ________      ________
+ I              0.000         0.000
+ S              0.000         0.000
+
+
+           PSI
+              I             S
+              ________      ________
+ I            110.736
+ S              0.000        17.390
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2           C#3           C#4           C#5
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           ALPHA(C)
+              C#6
+              ________
+                0.000
+
+
+TECHNICAL 11 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 200
+        Number of final stage optimizations                   100
+
+
+
+     VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 5 (H0) VERSUS 6 CLASSES
+
+          H0 Loglikelihood Value                       -63683.784
+          2 Times the Loglikelihood Difference             41.251
+          Difference in the Number of Parameters                3
+          Mean                                             -1.840
+          Standard Deviation                               16.137
+          P-Value                                          0.0035
+
+     LO-MENDELL-RUBIN ADJUSTED LRT TEST
+
+          Value                                            39.725
+          P-Value                                          0.0042
+
+
+TECHNICAL 14 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 200
+        Number of final stage optimizations                   100
+
+     Random Starts Specification for the k-1 Class Model for Generated Data
+        Number of initial stage random starts                   0
+        Number of final stage optimizations for the
+           initial stage random starts                          0
+     Random Starts Specification for the k Class Model for Generated Data
+        Number of initial stage random starts                  40
+        Number of final stage optimizations                     8
+     Number of bootstrap draws requested                   Varies
+
+
+     PARAMETRIC BOOTSTRAPPED LIKELIHOOD RATIO TEST FOR 5 (H0) VERSUS 6 CLASSES
+
+          H0 Loglikelihood Value                       -63683.784
+          2 Times the Loglikelihood Difference             41.251
+          Difference in the Number of Parameters                3
+          Approximate P-Value                              0.0000
+          Successful Bootstrap Draws                           10
+
+     WARNING:  OF THE 10 BOOTSTRAP DRAWS, 9 DRAWS HAD BOTH A SMALLER LRT VALUE THAN THE
+     OBSERVED LRT VALUE AND NOT A REPLICATED BEST LOGLIKELIHOOD VALUE FOR THE 6-CLASS MODEL.
+     THIS MEANS THAT THE P-VALUE MAY NOT BE TRUSTWORTHY DUE TO LOCAL MAXIMA.
+     INCREASE THE NUMBER OF RANDOM STARTS USING THE LRTSTARTS OPTION.
+
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              I             S             C_I           C_S
+              ________      ________      ________      ________
+               50.967         2.842        51.456         2.693
+
+
+           Covariances
+              I             S             C_I           C_S
+              ________      ________      ________      ________
+ I             70.786
+ S              2.791         1.003
+ C_I           70.490         2.760        72.129
+ C_S            3.372         1.060         2.716         1.426
+
+
+           Correlations
+              I             S             C_I           C_S
+              ________      ________      ________      ________
+ I              1.000
+ S              0.331         1.000
+ C_I            0.987         0.325         1.000
+ C_S            0.336         0.886         0.268         1.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated factor scores, estimated values, residuals)
+  Scatterplots (sample values, estimated factor scores, estimated values, residuals)
+  Sample means
+  Estimated means, medians, modes, and percentiles
+  Sample and estimated means
+  Latent variable distribution plots
+  Observed individual values
+  Estimated individual values
+  Estimated means and observed individual values
+  Estimated means and estimated individual values
+  Estimated overall and class-specific distributions
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    savedata_c6.dat
+
+  Order and format of variables
+
+    SCI7           F10.3
+    SCI8           F10.3
+    SCI9           F10.3
+    SCI10          F10.3
+    SCI11          F10.3
+    SCI12          F10.3
+    I              F10.3
+    S              F10.3
+    C_I            F10.3
+    C_S            F10.3
+    CPROB1         F10.3
+    CPROB2         F10.3
+    CPROB3         F10.3
+    CPROB4         F10.3
+    CPROB5         F10.3
+    CPROB6         F10.3
+    C              F10.3
+
+  Save file format
+    17F10.3
+
+  Save file record length    10000
+
+  Save missing symbol        *
+
+
+     Beginning Time:  00:27:57
+        Ending Time:  00:32:01
+       Elapsed Time:  00:04:04
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2023 Muthen & Muthen

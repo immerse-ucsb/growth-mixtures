@@ -1,0 +1,356 @@
+Mplus VERSION 8.10
+MUTHEN & MUTHEN
+12/01/2024  10:02 PM
+
+INPUT INSTRUCTIONS
+
+  Title:  Week 6 Assignment: 1 class GMM with no covariates
+
+  DATA: FILE IS lsay.dat;
+
+  VARIABLE:  NAMES ARE lsayid schcode classize urban tracking ntracks
+                mthlvl female mthflg7-mthflg12 mothed fathed mothsei
+                fathsei homeres race
+                expect parapsh parcpsh parmpsh peerapsh peermpsh
+                bas7 basse7 alg7 algse7 geo7 geose7
+                qlt7 qltse7 mth7 mthse7 mtha7 mthase7
+                bas8 basse8 alg8 algse8 geo8 geose8
+                qlt8 qltse8 mth8 mthse8 mtha8 mthase8
+                bas9 basse9 alg9 algse9 geo9 geose9
+                qlt9 qltse9 mth9 mthse9 mtha9 mthase9
+                bas10 basse10 alg10 algse10 geo10 geose10
+                qlt10 qltse10 mth10 mthse10 mtha10 mthase10
+                bas11 basse11 alg11 algse11 geo11 geose11
+                qlt11 qltse11 mth11 mthse11 mtha11 mthase11
+                bas12 basse12 alg12 algse12 geo12 geose12
+                qlt12 qltse12 mth12 mthse12 mtha12 mthase12
+                mthcrs7-mthcrs12 mtrk10-mtrk12 totstud lchfull
+                lchpart parvis mcirr mclub strat mstrat comp mcomp
+                african hispan asian expel arrest dropot self worth
+                other satisf respect failure esteem problem cloctn
+                dloctn eloctn floctn gloctn hloctn iloctn jloctn
+                kloctn lloctn drink runawa suicid alc7 alc10 alc11
+                alc12 arest7 runa8 runa9 runa10 runa11 run12 suic8
+                suic9 suic10 suic11 suic12 drop7 drop8 drop9 drop10
+                drop11 drop12 fdrop8 fdrop9 fdrop10 fdrop11 fdrop12
+                enj7 good7 und7 useboy7 nerv7 wor7 scar7 use7 logic7
+                boybet7 job7 often7 enj8 good8 und8 useboy8 nerv8
+                wor8 scar8 use8 logic8 boybet8 job8 often8 enj9
+                good9 und9 useboy9 nerv9 wor9 scar9 use9 logic9
+                boybet9 job9 often9 enj10 good10 und10 useboy10
+                nerv10 wor10 scar10 use10 logic10 boybet10 job10
+                often10;
+             USEVAR = mth7 mth8 mth9 mth10 mth11 mth12;
+             MISSING are all(9999);
+             CLASSES = c(1);
+
+  !mth7-mth12 = Aggregate math IRT, w/o aberrants
+
+  ANALYSIS: type = mixture missing;
+            starts = 20 2;
+
+  MODEL: %OVERALL%
+         i s | mth7@0 mth8@1 mth9@2 mth10@3 mth11@4 mth12@5;
+
+  OUTPUT: tech11;
+
+
+
+*** WARNING in ANALYSIS command
+  Starting with Version 5, TYPE=MISSING is the default for all analyses.
+  To obtain listwise deletion, use LISTWISE=ON in the DATA command.
+*** WARNING in OUTPUT command
+  TECH11 option is not available for TYPE=MIXTURE with only one class.
+  Request for TECH11 is ignored.
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  14
+   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+Week 6 Assignment: 1 class GMM with no covariates
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        3102
+
+Number of dependent variables                                    6
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Continuous
+   MTH7        MTH8        MTH9        MTH10       MTH11       MTH12
+
+Continuous latent variables
+   I           S
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                         20
+  Number of final stage optimizations                            2
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+
+Input data file(s)
+  lsay.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            46
+     Number of y missing data patterns          46
+     Number of u missing data patterns           0
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              MTH7          MTH8          MTH9          MTH10         MTH11
+              ________      ________      ________      ________      ________
+ MTH7           0.988
+ MTH8           0.822         0.832
+ MTH9           0.714         0.657         0.722
+ MTH10          0.651         0.592         0.587         0.658
+ MTH11          0.507         0.464         0.455         0.461         0.514
+ MTH12          0.373         0.343         0.333         0.335         0.315
+
+
+           Covariance Coverage
+              MTH12
+              ________
+ MTH12          0.377
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     MTH7                 50.395       0.199      27.280    0.03%      40.890     46.970     50.080
+            3065.000     103.982      -0.575      85.020    0.03%      53.160     59.690
+     MTH8                 53.825       0.081      24.920    0.04%      43.800     51.140     54.180
+            2581.000     121.461      -0.365      88.540    0.04%      56.930     62.890
+     MTH9                 58.812      -0.061      26.570    0.04%      46.910     55.700     59.300
+            2241.000     158.800      -0.552      94.190    0.04%      62.900     70.160
+     MTH10                63.574      -0.317      29.600    0.05%      51.350     61.780     65.305
+            2040.000     186.204      -0.467      95.170    0.25%      68.390     75.250
+     MTH11                67.640      -0.396      31.460    0.06%      56.560     65.280     68.820
+            1593.000     189.600      -0.291      97.290    0.75%      72.270     79.640
+     MTH12                68.607      -0.397      27.310    0.09%      56.270     65.980     69.345
+            1168.000     218.598      -0.374      98.360    0.43%      73.290     81.410
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+          -42711.235  107446           12
+          -42711.235  unperturbed      0
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       11
+
+Loglikelihood
+
+          H0 Value                      -42711.235
+          H0 Scaling Correction Factor      1.3161
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   85444.470
+          Bayesian (BIC)                 85510.908
+          Sample-Size Adjusted BIC       85475.957
+            (n* = (n + 2) / 24)
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1       3102.00000          1.00000
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1       3102.00000          1.00000
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1             3102          1.00000
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1
+
+    1   1.000
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1
+
+    1   1.000
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1
+
+    1      0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ I        |
+    MTH7               1.000      0.000    999.000    999.000
+    MTH8               1.000      0.000    999.000    999.000
+    MTH9               1.000      0.000    999.000    999.000
+    MTH10              1.000      0.000    999.000    999.000
+    MTH11              1.000      0.000    999.000    999.000
+    MTH12              1.000      0.000    999.000    999.000
+
+ S        |
+    MTH7               0.000      0.000    999.000    999.000
+    MTH8               1.000      0.000    999.000    999.000
+    MTH9               2.000      0.000    999.000    999.000
+    MTH10              3.000      0.000    999.000    999.000
+    MTH11              4.000      0.000    999.000    999.000
+    MTH12              5.000      0.000    999.000    999.000
+
+ S        WITH
+    I                  6.312      0.470     13.427      0.000
+
+ Means
+    I                 50.584      0.182    278.210      0.000
+    S                  3.527      0.049     71.587      0.000
+
+ Intercepts
+    MTH7               0.000      0.000    999.000    999.000
+    MTH8               0.000      0.000    999.000    999.000
+    MTH9               0.000      0.000    999.000    999.000
+    MTH10              0.000      0.000    999.000    999.000
+    MTH11              0.000      0.000    999.000    999.000
+    MTH12              0.000      0.000    999.000    999.000
+
+ Variances
+    I                 89.850      2.355     38.153      0.000
+    S                  3.124      0.180     17.357      0.000
+
+ Residual Variances
+    MTH7              18.508      1.103     16.776      0.000
+    MTH8              18.766      0.904     20.750      0.000
+    MTH9              20.013      0.929     21.538      0.000
+    MTH10             20.868      1.035     20.166      0.000
+    MTH11             15.419      1.473     10.466      0.000
+    MTH12             31.545      2.471     12.767      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.172E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Mixture analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  22:02:12
+        Ending Time:  22:02:13
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2023 Muthen & Muthen

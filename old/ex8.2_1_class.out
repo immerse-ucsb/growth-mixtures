@@ -1,0 +1,318 @@
+Mplus VERSION 8.10
+MUTHEN & MUTHEN
+12/02/2024  12:06 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  1 classes
+  DATA:
+  FILE = "data_ex8.2_1631566551e8ed1f296fa0b105ecbf87.dat";
+  VARIABLE:
+  NAMES = V1 V2 V3 V4 V5;
+   MISSING=.;
+   CLASSES = c1(1);
+
+  ANALYSIS:
+  TYPE = mixture;
+
+  MODEL:
+  %OVERALL%
+  i s | V1@0 V2@1 V3@2 V4@3;
+  i s on V5;
+
+
+  OUTPUT:
+  tech11 tech14;
+  SAVEDATA:
+  FILE IS ex8.2_1.dat;
+  SAVE = cprobabilities;
+
+
+
+*** WARNING in OUTPUT command
+  TECH11 option is not available for TYPE=MIXTURE with only one class.
+  Request for TECH11 is ignored.
+*** WARNING in OUTPUT command
+  TECH14 option is not available for TYPE=MIXTURE with only one class.
+  Request for TECH14 is ignored.
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+1 classes
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         500
+
+Number of dependent variables                                    4
+Number of independent variables                                  1
+Number of continuous latent variables                            2
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Continuous
+   V1          V2          V3          V4
+
+Observed independent variables
+   V5
+
+Continuous latent variables
+   I           S
+
+Categorical latent variables
+   C1
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+
+Input data file(s)
+  data_ex8.2_1631566551e8ed1f296fa0b105ecbf87.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+     Number of y missing data patterns           1
+     Number of u missing data patterns           0
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              V1            V2            V3            V4            V5
+              ________      ________      ________      ________      ________
+ V1             1.000
+ V2             1.000         1.000
+ V3             1.000         1.000         1.000
+ V4             1.000         1.000         1.000         1.000
+ V5             1.000         1.000         1.000         1.000         1.000
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     V1                    1.913       0.088      -3.793    0.20%       0.469      1.415      1.873
+             500.000       2.436      -0.083       6.354    0.20%       2.273      3.215
+     V2                    2.708      -0.003      -2.971    0.20%       1.134      2.197      2.651
+             500.000       3.465      -0.352       8.355    0.20%       3.216      4.416
+     V3                    3.342      -0.076      -3.471    0.20%       1.357      2.753      3.429
+             500.000       5.420      -0.006      12.491    0.20%       3.966      5.409
+     V4                    4.080      -0.088      -4.171    0.20%       1.350      3.439      4.269
+             500.000       8.401      -0.209      13.779    0.20%       5.030      6.501
+     V5                   -0.060      -0.010      -3.054    0.20%      -0.917     -0.326     -0.053
+             500.000       0.982      -0.281       2.546    0.20%       0.210      0.782
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       11
+
+Loglikelihood
+
+          H0 Value                       -3346.772
+          H0 Scaling Correction Factor      0.9335
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    6715.545
+          Bayesian (BIC)                  6761.905
+          Sample-Size Adjusted BIC        6726.991
+            (n* = (n + 2) / 24)
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1        500.00000          1.00000
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1        500.00000          1.00000
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1              500          1.00000
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1
+
+    1   1.000
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1
+
+    1   1.000
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1
+
+    1      0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ I        |
+    V1                 1.000      0.000    999.000    999.000
+    V2                 1.000      0.000    999.000    999.000
+    V3                 1.000      0.000    999.000    999.000
+    V4                 1.000      0.000    999.000    999.000
+
+ S        |
+    V1                 0.000      0.000    999.000    999.000
+    V2                 1.000      0.000    999.000    999.000
+    V3                 2.000      0.000    999.000    999.000
+    V4                 3.000      0.000    999.000    999.000
+
+ I          ON
+    V5                 0.013      0.066      0.201      0.840
+
+ S          ON
+    V5                 0.249      0.035      7.108      0.000
+
+ S        WITH
+    I                  0.187      0.052      3.611      0.000
+
+ Intercepts
+    V1                 0.000      0.000    999.000    999.000
+    V2                 0.000      0.000    999.000    999.000
+    V3                 0.000      0.000    999.000    999.000
+    V4                 0.000      0.000    999.000    999.000
+    I                  1.942      0.068     28.621      0.000
+    S                  0.727      0.035     20.825      0.000
+
+ Residual Variances
+    V1                 0.602      0.073      8.300      0.000
+    V2                 0.559      0.046     12.257      0.000
+    V3                 0.442      0.052      8.546      0.000
+    V4                 0.565      0.100      5.679      0.000
+    I                  1.892      0.141     13.371      0.000
+    S                  0.492      0.039     12.688      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.409E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    ex8.2_1.dat
+
+  Order and format of variables
+
+    V1             F10.3
+    V2             F10.3
+    V3             F10.3
+    V4             F10.3
+    V5             F10.3
+    CPROB1         F10.3
+    C1             F10.3
+
+  Save file format
+    7F10.3
+
+  Save file record length    10000
+
+  Save missing symbol        *
+
+
+     Beginning Time:  00:06:18
+        Ending Time:  00:06:19
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2023 Muthen & Muthen

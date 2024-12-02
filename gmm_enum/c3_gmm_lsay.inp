@@ -1,0 +1,26 @@
+TITLE:
+GMM 3-Class
+DATA:
+FILE = "C:/Users/dinan/Box/IES_IMMERSE/youtube_materials/growth-mixtures/
+gmm_enum/gmm_lsay.dat"; 
+VARIABLE:
+NAMES = id sci7 sci8 sci9 sci10 sci11 sci12; 
+ MISSING=.;
+ usevar = sci7-sci12; 
+classes = c(3); 
+ANALYSIS:
+estimator = mlr; 
+    type = mixture;
+    starts = 200 100; 
+    processors = 10;
+MODEL:
+%OVERALL%
+       i s | sci7@0 sci8@1 sci9@2 sci10@3 sci11@4 sci12@5;
+OUTPUT:
+tech1 tech11 tech14 sampstat standardized;
+SAVEDATA:
+FILE IS savedata_c3.dat;
+SAVE = cprobabilities;
+PLOT:
+type=plot3;
+          series = sci7-sci12(*)
